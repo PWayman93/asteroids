@@ -1,12 +1,11 @@
 import pygame
+import sys
 from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
 
 clock = pygame.time.Clock()
-
-dt = 0
 
 number = 0
 
@@ -41,6 +40,12 @@ def main():
         updateable.update(dt)
         for sprite in drawable:
             sprite.draw(screen)
+            
+        for asteroid in asteroids:
+            if player.collisions(asteroid):
+                print("Game over!")
+                sys.exit()
+        
         pygame.display.flip()
         
         
